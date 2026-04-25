@@ -49,12 +49,31 @@ public class Pilha<E> {
 	 * uma exceção será lançada.
 	 *
 	 * @param numItens o número de itens a serem copiados da pilha original.
-	 * @return uma nova instância de Pilha<E> contendo os numItens primeiros elementos.
+	 * @return uma nova instância de Pilha<E> contendo os numItens primeiros
+	 *         elementos.
 	 * @throws IllegalArgumentException se a pilha não contém numItens elementos.
 	 */
 	public Pilha<E> subPilha(int numItens) {
-		
-		// TODO
-		return null;
+		if (numItens < 0) {
+			throw new IllegalArgumentException("A quantidade de itens deve ser maior ou igual a zero.");
+		}
+
+		Pilha<E> invertida = new Pilha<E>();
+		Pilha<E> resultado = new Pilha<E>();
+
+		Celula<E> atual = topo;
+		for (int i = 0; i < numItens; i++) {
+			if (atual == fundo) {
+				throw new IllegalArgumentException("A pilha não contém a quantidade de itens solicitada.");
+			}
+			invertida.empilhar(atual.getItem());
+			atual = atual.getProximo();
+		}
+
+		while (!invertida.vazia()) {
+			resultado.empilhar(invertida.desempilhar());
+		}
+
+		return resultado;
 	}
 }
