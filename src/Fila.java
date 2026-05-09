@@ -45,4 +45,26 @@ public class Fila<E> {
         }
         return frente.getProximo().getItem();
     }
+
+    public int contarOcorrencias(E itemBusca) {
+        int contador = 0;
+        Celula<E> atual = frente.getProximo();
+        while (atual != null) {
+            if (atual.getItem() != null && atual.getItem().equals(itemBusca)) {
+                contador++;
+            } else if (atual.getItem() == null && itemBusca == null) {
+                contador++;
+            }
+            atual = atual.getProximo();
+        }
+        return contador;
+    }
+
+    public Fila<E> extrairLote(int numItens) {
+        Fila<E> lote = new Fila<>();
+        for (int i = 0; i < numItens && !this.vazia(); i++) {
+            lote.enfileirar(this.desenfileirar());
+        }
+        return lote;
+    }
 }
