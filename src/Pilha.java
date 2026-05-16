@@ -76,4 +76,22 @@ public class Pilha<E> {
 
 		return resultado;
 	}
+
+	public void inverterTopo(int a){
+		Pilha<E> invertida = new Pilha<E>();
+		Pilha<E> auxiliar = new Pilha<E>();
+		if(vazia()){
+			throw new IllegalArgumentException("A pilha não contém itens para inverter.");
+		}
+		for (int i = 0; i < a && !vazia(); i++) {
+			invertida.empilhar(this.desempilhar());
+			}
+		while (!invertida.vazia()) {
+			auxiliar.empilhar(invertida.desempilhar());
+		}
+		while (!auxiliar.vazia()) {
+			empilhar(auxiliar.desempilhar());
+		}
+		
+	}
 }
